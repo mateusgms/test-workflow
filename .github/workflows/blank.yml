@@ -18,6 +18,8 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
   Testing-optional-step:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
+    if: |
+      github.ref == 'refs/heads/master' &&
+      github.event_name == 'workflow_dispatch'
     steps:
       - run: echo "🙈 This job does not do anything. But it does run on pull requests only."
